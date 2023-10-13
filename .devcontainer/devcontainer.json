@@ -23,6 +23,6 @@
         "ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {},
         "ghcr.io/dhoeric/features/tfsec:1": {}
       },
-    "postCreateCommand": "/bin/chmod +x /workspaces/copilot-terraform-demo/.devcontainer/on-setup.sh && cd /workspaces/copilot-terraform-demo/ && bash .devcontainer/on-setup.sh"
+    "postCreateCommand": "cd /workspaces/copilot-terraform-demo/ && bash .devcontainer/on-setup.sh"
 }
 
