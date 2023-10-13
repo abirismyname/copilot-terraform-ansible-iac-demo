@@ -19,10 +19,15 @@
             ]
         }
     },
+    "hostRequirements": {
+      "cpus": 8,
+      "memory": "8gb",
+      "storage": "32gb"
+   },
     "features": {
         "ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {},
         "ghcr.io/dhoeric/features/tfsec:1": {}
       },
-    "postCreateCommand": "cd /workspaces/copilot-terraform-demo/ && bash .devcontainer/on-setup.sh"
+    "postCreateCommand": "/workspaces/copilot-terraform-demo/.devcontainer/on-setup.sh"
 }
 
