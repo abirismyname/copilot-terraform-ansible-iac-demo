@@ -1,2 +1,2 @@
-# initialize the terraform deployment and download required providers
+#!/bin/bash
 terraform init -upgrade
