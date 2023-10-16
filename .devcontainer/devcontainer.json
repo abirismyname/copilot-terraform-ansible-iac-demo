@@ -14,7 +14,7 @@
         "codespaces": {
             "openFiles": [
               "main.tf",
-              "provider.tf",
+              "providers.tf",
               "variables.tf"
             ]
         }
