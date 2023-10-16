@@ -49,12 +49,13 @@ This demo contains a partially complete Terraform files
 // Change the network interface of Azure VM to another one This will allow you to see how your favourite AI Pair programmer can help you to refine your code by providing helpful suggestions. This should mean less time consuming trial and error and more time to focus on the task at hand.
 ```
 
-9. Document your terraform file (Chat)
+9. Create a new Terraform project (Chat)
 ```java
-// Try writing documentation for this Terraform script; GitHub Copilot will make suggestions for natural language documentation as well.
+// Try `/createWorkspace simple Azure Terraform project`
+// It should create a terraform scaffolding folder structure with some default resources
 ```
 
-10. Creating a new terraform file
+10. Creating a new terraform file in `backend.tf`
 ```java
 // Try creating a new file and writing a Terraform script and see what suggestions GitHub Copilot makes. You will probably find that on a completely new file, GitHub Copilot's suggestions are often not exactly what you intended. At that point, you may want to write some resource definitions yourself, or write detailed comments.
 ```
