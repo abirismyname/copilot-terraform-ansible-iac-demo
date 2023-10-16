@@ -1,5 +1,5 @@
 {
-    "name":  "spring-boot-app",
+    "name":  "copilot-terraform-demo",
     "image": "mcr.microsoft.com/devcontainers/universal:2",
 
     "customizations": {
@@ -27,7 +27,6 @@
     "features": {
         "ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {},
         "ghcr.io/dhoeric/features/tfsec:1": {}
-      },
-    "postCreateCommand": "/workspaces/copilot-terraform-demo/.devcontainer/on-setup.sh"
+      }
 }
 
