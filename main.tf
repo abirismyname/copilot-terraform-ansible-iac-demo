@@ -54,3 +54,8 @@ resource "azurerm_network_interface" "internal" {
     private_ip_address_allocation = "Dynamic"
   }
 }
+
+// Azure VM
+resource "azurerm_virtual_machine" "testvm" {
+  
+}
