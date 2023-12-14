@@ -7,9 +7,16 @@ terraform {
     azuread = {
       source = "hashicorp/azuread"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
   }
 }
-
 provider "azurerm" {
   features {}
 }
+
+provider "aws" {
+  region = "us-east-1"
+} 
