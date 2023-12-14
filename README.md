@@ -8,7 +8,7 @@ This demo contains a partially complete Terraform files
 - main.tf - Terraform script we are going to edit. We've already defined some resources like a resources group and a VNET.
 - variables.tf - Defines the inputs required to deploy an Azure VM.
 - example.tf - Contains a completed example of the VM resource.
-- backend.tf - Empty terraform file.
+- backend.tf.example - Empty terraform file.
 - providers.tf - Needed by terraform but not used in this demo.
 
 **To be Completed in demo:**
@@ -35,7 +35,7 @@ name =
 
 Copilot will start suggesting different key/value pairs. If Copilot doesn't suggest anything, try opening the Completions Panel and look at the suggestions. Look at `example.tf`, line 100, for a completed `azurerm_virtual_machine` example.  
 
-4. (Optional) Open the mostly empty `backend.tf` and start prompting Copilot for suggestions. Good [YouTube Short](https://www.youtube.com/shorts/76tNglWSLt8) for ideas.  
+4. (Optional) Rename `backend.tf.example` to `backend.tf`. Open the mostly empty `backend.tf` and start prompting Copilot for suggestions. Good [YouTube Short](https://www.youtube.com/shorts/76tNglWSLt8) for ideas.  
 5. Copilot Chat - This is where the fun begins!
 Sample prompts when highlighting the code in main.tf
 
@@ -55,5 +55,5 @@ This should generate a bunch of variable declarations in chat. You should be abl
 Create Workspace Slash Command Example:
 
 ```text
-/createWorkspace simple Azure Terraform project
+/new simple Azure Terraform project
 ```
