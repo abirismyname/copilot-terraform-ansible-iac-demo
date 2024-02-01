@@ -42,7 +42,7 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
-// Internal network interface
+
 resource "azurerm_network_interface" "internal" {
   name                      = "${var.prefix}-nic2"
   resource_group_name       = azurerm_resource_group.main.name
@@ -57,5 +57,7 @@ resource "azurerm_network_interface" "internal" {
 
 // Azure VM
 resource "azurerm_virtual_machine" "testvm" {
-  
+  name = "${var.prefix}-vm",
+  location = azurerm_resource_group.main.location,
+  resource_group_name = azurerm_resource_group.main.name
 }

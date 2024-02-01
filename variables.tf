@@ -9,3 +9,4 @@ variable "location" {
 variable "admin_password" {
   description = "Virtual Machine admin password"
 }
+

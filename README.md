@@ -57,3 +57,22 @@ Create Workspace Slash Command Example:
 ```text
 /new simple Azure Terraform project
 ```
+
+Other fun prompts:
+```text
+"what do I need to add to my variables.tf to fix all these "no declaration found" errors?"
+
+@workspace /explain No declaration found for "var.address_space"
+
+document this in a comment
+
+convert this ARM template to bicep
+
+convert this bicep file to terraform
+
+convert this script to 1 ansible file
+
+what is this ansible script doing?
+
+@terminal how do I run this ansible script?
+```

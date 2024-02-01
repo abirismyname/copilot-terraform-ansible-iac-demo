@@ -1,0 +1,88 @@
+---
+- hosts: all
+  vars:
+    NFSserver: "nfs-server"
+    NFSdir: "/NFS/AIXSOFT_NFS"
+    MOUNTPT: "/mnt.$$"
+    MAILTO: "unix@company.com"
+    DSTRING: "{{ lookup('pipe', 'date +%Y%m%d%H%M') }}"
+    LOGFILE: "/tmp/{{ ansible_hostname }}.dist_sudoers.{{ DSTRING }}.log"
+    BKUPFILE: "/etc/sudoers.{{ DSTRING }}"
+    SRCFILE: "{{ MOUNTPT }}/skel/sudoers-uni"
+    MD5FILE: "/.sudoers.md5"
+  tasks:
+    - name: Check if we are root
+      fail:
+        msg: "You must be root to run this script."
+      when: ansible_user_id != 'root'
+
+    - name: Check platform
+      fail:
+        msg: "Unsupported Platform."
+      when: ansible_os_family != "RedHat" and ansible_os_family != "Debian" and ansible_os_family != "SunOS"
+
+    - name: Exclude Lawson Hosts
+      fail:
+        msg: "Exiting Lawson host {{ ansible_hostname }} with no changes."
+      when: ansible_hostname[:2] == 'la'
+
+    - name: Check if NFS server is up
+      command: ping -c 1 {{ NFSserver }}
+      register: result
+      failed_when: "'1 packets transmitted, 1 received' not in result.stdout"
+
+    - name: Mount NFS share to HOSTNAME
+      mount:
+        path: "{{ MOUNTPT }}"
+        src: "{{ NFSserver }}:{{ NFSdir }}"
+        fstype: nfs
+        opts: vers=3,soft
+        state: mounted
+
+    - name: Check if mount worked
+      stat:
+        path: "{{ SRCFILE }}"
+      register: result
+      failed_when: not result.stat.exists
+
+    - name: Backup sudoers file
+      copy:
+        src: /etc/sudoers
+        dest: "{{ BKUPFILE }}"
+        remote_src: yes
+      when: not ansible_hostname[:2] == 'hd'
+
+    - name: Copy new sudoers file
+      copy:
+        src: "{{ SRCFILE }}"
+        dest: /etc/sudoers
+        mode: 0440
+        remote_src: yes
+
+    - name: Check sudoers syntax
+      command: visudo -c
+      register: result
+      failed_when: "'parsed OK' not in result.stdout"
+
+    - name: Update checksum file
+      shell: |
+        grep -v '/etc/sudoers' {{ MD5FILE }} > {{ MD5FILE }}.tmp
+        csum /etc/sudoers >> {{ MD5FILE }}.tmp
+        mv {{ MD5FILE }}.tmp {{ MD5FILE }}
+        chmod 600 {{ MD5FILE }}
+
+    - name: Append #includedir /etc/sudoers.d at end of file
+      lineinfile:
+        path: /etc/sudoers
+        line: "{{ item }}"
+      with_items:
+        - ""
+        - "## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)"
+        - "#includedir /etc/sudoers.d"
+      when: ansible_hostname[:2] == 'hd'
+
+    - name: Unmount /mnt.$$ directory
+      mount:
+        path: "{{ MOUNTPT }}"
+        state: unmounted
+...
