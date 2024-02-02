@@ -15,9 +15,10 @@ This demo contains a partially complete Terraform and different IAC files
   - backend.tf.example - Empty terraform file.
   - providers.tf - Needed by terraform but not used in this demo.
 
-**Terraform demo example**  
-**Ansible details:**  
-**Conversion examples:**
+## Quick links
+[**Terraform demo**](https://github.com/abirismyname/copilot-terraform-ansible-iac-demo/blob/main/README.md#how-is-demo-run)  
+[**Ansible examples**](https://github.com/abirismyname/copilot-terraform-ansible-iac-demo/tree/main?tab=readme-ov-file#ansible-examples)  
+[**Conversion examples**](https://github.com/abirismyname/copilot-terraform-ansible-iac-demo/tree/main?tab=readme-ov-file#conversions)
 
 ### What does this demo show?
 
