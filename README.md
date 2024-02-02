@@ -15,7 +15,9 @@ This demo contains a partially complete Terraform and different IAC files
   - backend.tf.example - Empty terraform file.
   - providers.tf - Needed by terraform but not used in this demo.
 
-**To be Completed in demo:**
+**Terraform demo example**  
+**Ansible details:**  
+**Conversion examples:**
 
 ### What does this demo show?
 
@@ -62,21 +64,44 @@ Create Workspace Slash Command Example:
 /new simple Azure Terraform project
 ```
 
-Other fun prompts:
+Highlight a block and try documenting /doc in line. 
+
+```text
+/doc
+or if that doesn't work, try
+'document this in a comment'
+```
+
+Other ideas
 ```text
 "what do I need to add to my variables.tf to fix all these "no declaration found" errors?"
-
 @workspace /explain No declaration found for "var.address_space"
+```
 
-document this in a comment
+<hr>
 
-convert this ARM template to bicep
+### Ansible examples:  
 
-convert this bicep file to terraform
+Converting a bash script to ansible code is like converting lead into gold for devops folks:
 
-convert this script to 1 ansible file
+```
+convert this bash script to 1 ansible file
+```
 
+The resulting output should mirror the ansible/ansible.yml file
+
+```text
 what is this ansible script doing?
-
 @terminal how do I run this ansible script?
+```
+
+### Conversions
+Leverage the files in the aws and azure folders to explore other prompts. *Folks love seeing Copilot convert between IaC formats!*
+
+For example:
+```text
+convert this ARM template to bicep
+convert this bicep file to terraform
+convert this cloudformation template to terraform
+convert this bash script to 1 ansible file
 ```
