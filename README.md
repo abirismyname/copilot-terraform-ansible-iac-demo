@@ -1,15 +1,19 @@
-# Terraform Demo
+# Terraform and more!
 
 ## Demo Description
 
-This demo contains a partially complete Terraform files
+This demo contains a partially complete Terraform and different IAC files
 **Included:**
 
-- main.tf - Terraform script we are going to edit. We've already defined some resources like a resources group and a VNET.
-- variables.tf - Defines the inputs required to deploy an Azure VM.
-- example.tf - Contains a completed example of the VM resource.
-- backend.tf.example - Empty terraform file.
-- providers.tf - Needed by terraform but not used in this demo.
+- /aws - folder contains a terraform file and cloudformation template that deploy resources to aws
+- /azure - folder contains an ARM template `azuredeploy.json` and bicep file `main.bicep` that deploy resources to azure
+- /ansible - folder contains an ansible playbook and a sample bash script that can be converted to ansible
+- /terraform
+  - main.tf - Terraform script we are going to edit. We've already defined some resources like a resources group and a VNET.
+  - variables.tf - Defines the inputs required to deploy an Azure VM.
+  - example.tf - Contains a completed example of the VM resource.
+  - backend.tf.example - Empty terraform file.
+  - providers.tf - Needed by terraform but not used in this demo.
 
 **To be Completed in demo:**
 

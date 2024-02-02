@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation Template
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    Default: 'myseckey'
+  VPC:
+    Description: VPC ID
+    Type: String
+    Default: 'vpc-5234832d'
+  Subnet:
+    Description: Subnet ID
+    Type: String
+    Default: 'subnet-81896c8e'
+  AMI:
+    Description: AMI ID
+    Type: String
+    Default: 'ami-0c1bea58988a989155'
+  InstanceType:
+    Description: EC2 Instance Type
+    Type: String
+    Default: 't2.micro'
+Resources:
+  MySecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: IAC-Sec-Group
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          FromPort: 0
+          ToPort: 0
+          CidrIp: 0.0.0.0/0
+  MyEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref AMI
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref KeyName
+      SubnetId: !Ref Subnet
+      SecurityGroupIds:
+        - !Ref MySecurityGroup
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 50
+            VolumeType: gp2
+            DeleteOnTermination: true
+      Tags:
+        - Key: Name
+          Value: SERVER01
+        - Key: Environment
+          Value: DEV
+        - Key: OS
+          Value: UBUNTU
+        - Key: Managed
+          Value: IAC
+Outputs:
+  InstancePublicIp:
+    Description: The Public IP of the EC2 Instance
+    Value: !GetAtt MyEC2Instance.PublicIp
