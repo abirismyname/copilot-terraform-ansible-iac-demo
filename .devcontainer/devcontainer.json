@@ -26,9 +26,10 @@
       "memory": "32gb",
       "storage": "64gb"
    },
-    "features": {
+   "features": {
         "ghcr.io/devcontainers-contrib/features/terraform-asdf:2": {},
         "ghcr.io/dhoeric/features/tfsec:1": {}
-      }
+   },
+   "postCreateCommand": "pip3 install --user -r terraform/tftest/requirements.txt"
 }
 
